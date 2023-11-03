@@ -1,0 +1,123 @@
+/* Apply styles to the body and header with a background animation */
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background: linear-gradient(45deg, #3498db, #e74c3c);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s infinite;
+  margin: 0;
+  padding: 0;
+  transition: background 0.5s;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h1 {
+  background: linear-gradient(45deg, #fff, #fff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #3498db; /* Change the text color to improve readability */
+  padding: 20px;
+  font-size: 36px;
+  transition: background 0.5s;
+}
+
+h1:hover {
+  background: linear-gradient(45deg, #fff, #fff);
+  color: #e74c3c; /* Change the text color on hover for a dynamic effect */
+}
+/* Style the form and input */
+#guess-form {
+  margin-top: 20px;
+  transition: transform 0.2s; /* Add a subtle transition effect */
+}
+
+input[type='number'] {
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: border-color 0.3s; /* Smooth border color change */
+}
+
+input[type='number']:focus {
+  border-color: #2980b9; /* Highlight the input on focus */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+button:hover {
+  background-color: #2980b9; /* Hover effect for the button */
+}
+
+/* Style the message display */
+#message {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Style the "Lives" display */
+#lives {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Center the form and message */
+#guess-form,
+#message {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Center the form in the middle of the page */
+#guess-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 0 auto;
+  transition: transform 0.2s; /* Add a subtle transition effect */
+}
+
+#guess-form:hover {
+  transform: scale(1.02); /* Hover effect to scale the form slightly */
+}
+
+/* Style the "Start New Game" button */
+#new-game {
+  margin: 20px auto; /* Center horizontally and add some top margin */
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+#new-game:hover {
+  background-color: #c0392b; /* Hover effect for the button */
+}

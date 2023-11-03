@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Find the Number Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Find the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <form id="guess-form">
+      <input type="number" id="user-guess" min="1" max="100" />
+      <button type="submit">Submit Guess</button>
+    </form>
+    <p id="message"></p>
+    <p id="lives">Lives: 5</p>
+    <button id="new-game" style="display: none">Start New Game</button>
+
+    <script>
+      let minNumber = 1;
+      let maxNumber = 100;
+      let targetNumber;
+      let attempts = 0;
+      let userMin = minNumber;
+      let userMax = maxNumber;
+      let remainingLives = 5;
+
+      const guessForm = document.getElementById('guess-form');
+      const userGuessInput = document.getElementById('user-guess');
+      const message = document.getElementById('message');
+      const livesDisplay = document.getElementById('lives');
+      const newGameButton = document.getElementById('new-game');
+
+      function startNewGame() {
+        targetNumber =
+          Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+        console.log(targetNumber);
+        attempts = 0;
+        userMin = minNumber;
+        userMax = maxNumber;
+        remainingLives = 5;
+        livesDisplay.textContent = `Lives: ${remainingLives}`;
+        guessForm.style.display = 'block';
+        newGameButton.style.display = 'none';
+        message.textContent = '';
+
+        userGuessInput.value = ''; // Clear the input field
+      }
+
+      startNewGame(); // Start a new game when the page loads
+
+      guessForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const userGuess = parseInt(userGuessInput.value);
+
+        if (
+          isNaN(userGuess) ||
+          userGuess < minNumber ||
+          userGuess > maxNumber
+        ) {
+          message.textContent =
+            'Please enter a valid number between 1 and 100.';
+          return;
+        }
+
+        attempts++;
+
+        if (userGuess < targetNumber) {
+          userMin = userGuess; // Update the minimum range
+          message.textContent = `Enter a number between ${userMin} and ${userMax}.`;
+        } else if (userGuess > targetNumber) {
+          userMax = userGuess; // Update the maximum range
+          message.textContent = `Enter a number between ${userMin} and ${userMax}.`;
+        } else {
+          message.textContent = `Congratulations! You guessed the number ${targetNumber} in ${attempts} attempts.`;
+          guessForm.style.display = 'none';
+          newGameButton.style.display = 'block';
+          return; // Exit the function without checking lives
+        }
+
+        userGuessInput.value = '';
+
+        if (attempts >= 5) {
+          remainingLives = 0; // Set remaining lives to 0
+          livesDisplay.textContent = `Lives: ${remainingLives}`;
+          message.textContent =
+            "You've run out of lives. The correct number was " + targetNumber;
+          guessForm.style.display = 'none';
+          newGameButton.style.display = 'block';
+        } else {
+          remainingLives = 5 - attempts;
+          livesDisplay.textContent = `Lives: ${remainingLives}`;
+        }
+      });
+
+      newGameButton.addEventListener('click', startNewGame);
+    </script>
+  </body>
+</html>
